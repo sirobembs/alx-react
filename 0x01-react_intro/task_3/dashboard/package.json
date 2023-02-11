@@ -2,7 +2,7 @@
   "name": "dashboard",
   "homepage": "http://sirobembs.github.io/alx-react",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@cfaester/enzyme-adapter-react-18": "^0.6.0",
     "@testing-library/jest-dom": "^5.16.5",

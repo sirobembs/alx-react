@@ -1,11 +1,14 @@
-.App-header {
-	display: flex;
-	flex-direction: row;
-	justify-content: left;
-	/* border-bottom: 3px solid var(--holberton-red); */
+.header {
+    display: flex;
+    color: #e0344a;
+    align-items: center;
+    border-bottom: thick solid #e0344a;
 }
-
-.App-header h1 {
-	margin: auto auto auto 0;
-	color: var(--holberton-red);
+  
+.header img {
+    width: 144px;
+}
+  
+.header h1 {
+    margin: 0;
 }

@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import printBestStudents from './8-seq';
 
 const grades = {
@@ -5,27 +6,17 @@ const grades = {
     score: 99,
     firstName: 'guillaume',
     lastName: 'salva',
-  }
+  },
+  2: {
+    score: 79,
+    firstName: 'larry',
+    lastName: 'hudson',
+  },
+  3: {
+    score: 59,
+    firstName: 'larry',
+    lastName: 'hudson',
+  },
 };
 
-console.log('printBestStudents: ');
 printBestStudents(grades);
-
-// import { Seq } from 'immutable';
-
-// const capitalize = (str) => {
-//   return str.charAt(0).toUpperCase() + str.slice(1);
-// }
-
-// export default function printBestStudents(object) {
-//   let filteredStudents = Seq(object).filter(grade => grade.score > 70).map(student => {
-//     let editedStudent = {
-//       ...student,
-//       firstName: capitalize(student.firstName),
-//       lastName: capitalize(student.lastName),
-//     };
-//     return editedStudent;
-//   }).toJS();
-
-//   console.log(filteredStudents);
-// }

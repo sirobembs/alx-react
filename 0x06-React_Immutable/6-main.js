@@ -1,5 +1,4 @@
 import mergeDeeplyElements from './6-deeply';
-// import accessImmutableObject from './2-nested';
 
 const page1 = {
   'user-1': {
@@ -23,8 +22,4 @@ const page2 = {
   },
 };
 
-let obj = mergeDeeplyElements(page1, page2).toJS();
-
-console.log(`mergeDeeplyElements:`);
-
-console.log(obj);
+console.log(mergeDeeplyElements(page1, page2).toJS());

@@ -1,100 +1,61 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import './Notifications.css';
-import closeIcon from '../assets/close-icon.png';
+import close_icon from '../assets/close-icon.png';
+import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
-import NotificationItemShape from './NotificationItemShape';
 
-class Notifications extends Component {
-	constructor(props) {
-		super(props);
-		this.markAsRead = this.markAsRead.bind(this);
-	}
-
-	markAsRead(id) {
-		console.log(`Notification ${id} has been marked as read`);
-	};
-
-	render() {
-		let {
-			displayDrawer,
-			listNotifications,
-		} = this.props;
-
-		return (
-			<div className="NotificationsComponent">
-				<div className="menuItem">
-					Your notifications
-				</div>
-				{
-					displayDrawer &&
-					<div className="Notifications">
-						<button
-							style={{
-								color: '#3a3a3a',
-								fontWeight: 'bold',
-								background: 'none',
-								border: 'none',
-								fontSize: '15px',
-								position: 'absolute',
-								right: '3px',
-								top: '3px',
-								cursor: 'pointer',
-								outline: 'none',
-							}}
-							aria-label="Close"
-							onClick={(e) => {
-								console.log('Close button has been clicked');
-							}}
-						>
-							<img
-								src={closeIcon}
-								alt="close icon"
-							/>
-						</button>
-						{
-							listNotifications.length === 0 &&
-							<p>No new notification for now</p>
-						}
-						{
-							listNotifications.length > 0 &&
-							<Fragment>
-								<p>
-									Here is the list of notifications
-								</p>
-								<ul>
-									{	
-										listNotifications.map((notif) => {
-											return (
-												<NotificationItem
-													key={notif.id}
-													id={notif.id}
-													type={notif.type}
-													value={notif.value}
-													html={notif.html}
-													markAsRead={this.markAsRead}
-												/>
-											)
-										})
-									}
-								</ul>
-							</Fragment>
-						}
-					</div>
-				}
-			</div>
-		);
-	};
-};
-
-Notifications.propTypes = {
-	displayDrawer: PropTypes.bool,
-	listNotifications: PropTypes.arrayOf(NotificationItemShape),
+const Notifications = ({ displayDrawer }) => {
+  return (
+    <Fragment>
+      <div className='menuItem'>
+        <p>Your notifications</p>
+      </div>
+      {displayDrawer && (
+        <div className='Notifications'>
+          <p>Here is the list of notifications</p>
+          <ul>
+            <NotificationItem type='default' value='New course available' />
+            <NotificationItem type='urgent' value='New resume available' />
+            <NotificationItem
+              type='urgent'
+              html={{ __html: getLatestNotification() }}
+            />
+          </ul>
+          <button
+            type='button'
+            aria-label='Close'
+            onClick={() => console.log('Close button has been clicked')}
+            style={{
+              display: 'inline-block',
+              position: 'absolute',
+              top: '56px',
+              right: '16px',
+              background: 0,
+              border: 0,
+              outline: 'none',
+              cursor: 'pointer',
+              zIndex: 1,
+            }}
+          >
+            <img
+              src={close_icon}
+              alt=''
+              style={{ width: '8px', height: '8px' }}
+            />
+          </button>
+        </div>
+      )}
+    </Fragment>
+  );
 };
 
 Notifications.defaultProps = {
-	displayDrawer: false,
-	listNotifications: [],
+  displayDrawer: false,
+};
+
+Notifications.propTypes = {
+  displayDrawer: PropTypes.bool,
 };
 
 export default Notifications;
